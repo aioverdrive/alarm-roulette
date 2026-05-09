@@ -1,0 +1,81 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Alarm Roulette</title>
+        <link rel="stylesheet" href="/alarm-roulette/alarm-roulette/css/styles.css">
+        <meta name=“viewport” content="width=device-width" initial-scale=1.0>
+        <meta charset="UTF-8">
+        <script src="https://kit.fontawesome.com/a89918f07b.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="alarm-card center">
+            <!-- Might need to wrap in different p tags -->
+             <div class="alarm-info-wrapper">
+                <div style="border: dashed red">
+                    <p>S M T W T F S</p>
+                    <p>6:00</p>
+                </div>
+                <div style="border: dashed red">
+                    <input type="checkbox" name="alarm-toggle" id="alarm-toggle">
+                    <label for="alarm-toggle">I don't think i need this label</label>
+                    <!-- This p tag will have the most logic behind it -->
+                    <p id="feedback">Roulette Ready!</p>
+                </div>
+             </div>
+             <!-- friends who submitted -->
+              <div class="friends-list" style="border: dashed red">
+                <!-- Name of roulette -->
+                 <p>Baja Blasters' Roulette</p>
+                <div class="friend-card">
+                    <img alt="google-pfp"/>
+                    <p>Name</p>
+                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                    <p>Uploaded <br><i>a voice recording.</i></p>
+                </div>
+                <div class="friend-card">
+                    <img alt="google-pfp"/>
+                    <p>Name</p>
+                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                    <p>Uploaded <br><i>a voice recording.</i></p>
+                </div>
+                <div class="friend-card">
+                    <img alt="google-pfp"/>
+                    <p>Name</p>
+                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                    <p>Uploaded <br><i>a voice recording.</i></p>
+                </div>
+                <div class="friend-card">
+                    <img alt="google-pfp"/>
+                    <p>Name</p>
+                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                    <p>Uploaded <br><i>a voice recording.</i></p>
+                </div>
+                <div class="friend-card">
+                    <img alt="google-pfp"/>
+                    <p>Name</p>
+                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                    <p>Uploaded <br><i>a voice recording.</i></p>
+                </div>
+
+              </div>
+        </div>
+        <nav class="nav">
+            <a href="alarm-homepage.html" class="nav-link">
+                <i class="fa-solid fa-alarm-clock"></i>
+                <span class="nav-text">Alarm</span>
+            </a>
+            <a href="friends.html" class="nav-link">
+                <i class="fa-solid fa-user-group"></i>
+                <span class="nav-text">Friends</span>
+            </a>
+            <a href="upload-sound.html" class="nav-link">
+                <i class="fa-solid fa-microphone"></i>
+                <span class="nav-text">Upload Sound</span>
+            </a>
+            <a href="settings.html" class="nav-link">
+                <i class="fa-solid fa-gear"></i>
+                <span class="nav-text">Settings</span>
+            </a>
+        </nav>
+    </body>
+</html>

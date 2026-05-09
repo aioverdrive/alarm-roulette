@@ -1,0 +1,31 @@
+/* remove default styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/* CSS Variables */
+:root {
+    --bg-color: var(#F3F3F3);
+    --text-color: var(#250001);
+    --primary-color: var(#A50104);
+    --secondary-color: var(#590004);
+    --accent-color: var(#FCBA04)l
+}
+/* Utility */
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.alarm-card, .friend-group-card {
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    width: 90%;
+}
+.alarm-info-wrapper {
+    display:flex;
+}
+.friend-group-card-segment {
+    text-align: center;
+}
