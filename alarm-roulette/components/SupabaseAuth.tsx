@@ -25,10 +25,26 @@ export default function SupabaseAuth() {
 
     const {
       data: { subscription },
-    } = supabaseBrowser.auth.onAuthStateChange((_event, session) => {
+    } = supabaseBrowser.auth.onAuthStateChange(async (_event, session) => {
       if (!isMounted) return;
       setUser(session?.user ?? null);
       setStatus(session ? "You are signed in." : "You are not signed in.");
+
+      // Insert profile on sign-in
+      if (_event === 'SIGNED_IN' && session?.user) {
+        const { error } = await supabaseBrowser
+          .from('profiles')
+          .upsert({
+            user_id: session.user.id,
+            full_name: session.user.user_metadata?.full_name || null,
+            email: session.user.user_metadata?.email || session.user.email,
+            avatar_url: session.user.user_metadata?.avatar_url || null,
+          }, { onConflict: 'user_id' });
+
+        if (error) {
+          console.error('Error inserting profile:', error);
+        }
+      }
     });
 
     return () => {
