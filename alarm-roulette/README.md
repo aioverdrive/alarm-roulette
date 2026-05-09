@@ -17,6 +17,30 @@ bun dev
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Supabase
+
+1. Create a Supabase project at https://app.supabase.com.
+2. Enable Google under Authentication > Providers.
+3. Copy the Project URL and anon key.
+4. Create a `.env.local` file in the project root with:
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
+```
+
+4. Install dependencies and run the app:
+
+```bash
+npm install
+npm run dev
+```
+
+The homepage includes a Google OAuth signup flow.
+
+> Supabase does not automatically create custom tables for you. If you want the app database schema, open Supabase SQL editor and run `supabase_schema.sql`.
+>
+> The built-in auth tables are managed by Supabase, but your custom `profiles` and `alarms` tables must be created manually.
 
 This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
