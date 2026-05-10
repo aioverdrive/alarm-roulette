@@ -13,7 +13,19 @@
     padding: 0;
     box-sizing: border-box;
 }
+<<<<<<< HEAD
 
+=======
+button, input[type="submit"], input[type="reset"] {
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
+>>>>>>> 031082b1c9af0620cf559f18c0c71dc9f68ccc8c
 html {
     line-height: 1.4;
 }
@@ -41,7 +53,17 @@ body {
 .margin-vertical {
     margin: 20px 0 20px 0;
 }
+<<<<<<< HEAD
 
+=======
+/* specifity reasons */
+.alarm-buttons .border-red {
+    border-color: #A50104;
+}
+.alarm-buttons .border-black {
+    border-color: #010101;
+}
+>>>>>>> 031082b1c9af0620cf559f18c0c71dc9f68ccc8c
 /* Fonts */
 .poppins-semibold {
     font-family: "Poppins", sans-serif;
@@ -77,6 +99,9 @@ h1 {
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+.recording-instructions {
+    font-size: 1.5rem;
 }
 .friend-group-name {
     font-size: 2rem;
@@ -172,6 +197,7 @@ h1 {
     background-color: #FCBA04;
     color: #010101;
 }
+<<<<<<< HEAD
 
 .nav-text {
     font-size: 0.7rem;
@@ -221,9 +247,110 @@ h1 {
 .hk-tg-10 input:checked + label::after {
     transform: translateX(30px);
     animation: pulse 0.8s ease;
+=======
+/* all this css for the button troll */
+/* 10 Pulse */
+/* 1. Hide the default checkbox */
+.hk-tg-10 input {
+  display: none;
+}
+
+/* 2. Style the label to be the "Track" */
+.hk-tg-10 label {
+  display: inline-block;
+  width: 64px; /* Adjust width to fit your translateX(38px) */
+  height: 30px;
+  border-radius: 30px;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  vertical-align: middle; /* Aligns it nicely with the "Pulse" text */
+  background: #010101; /* Your existing color */
+}
+
+/* 3. Create the "Knob" (The white circle) */
+.hk-tg-10 label::after {
+  content: ""; /* CRITICAL: Pseudo-elements won't show without this */
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: #fafafa; /* Your existing color */
+  transition: transform 0.3s ease;
+}
+
+/* 4. Your existing logic for the Checked state */
+.hk-tg-10 input:checked + label {
+  background: rgba(2, 102, 0, 1);
+}
+
+.hk-tg-10 input:checked + label::after {
+  transform: translateX(34px); /* Adjusted to fit the track width */
+  animation: pulse 0.8s ease;
+>>>>>>> 031082b1c9af0620cf559f18c0c71dc9f68ccc8c
+}
+
+/* Keeps the "Pulse" text aligned */
+.hk-tg-10 span {
+  margin-left: 10px;
+  vertical-align: middle;
 }
 
 @keyframes pulse {
+<<<<<<< HEAD
     0%   { box-shadow: 0 0 0 0 rgba(106, 92, 255, 0.7); }
     100% { box-shadow: 0 0 0 14px rgba(106, 92, 255, 0); }
 }
+=======
+  0% { box-shadow: 0 0 0 0 #FCBA04; }
+  100% { box-shadow: 0 0 0 14px rgba(106, 92, 255, 0); }
+}
+
+
+.alarm-card, .friend-group-card, .bg-icon-card {
+    display:flex;
+    justify-content: center;
+    flex-direction:column;
+    width: 90%;
+    border-radius: 1rem;
+    /* primary color but transparent */
+    background-color: rgba(2, 102, 0, .5);
+}
+
+.alarm-info {
+    display:flex;
+    justify-content: space-around;
+}
+/* buttonnmaxxing */
+.alarm-buttons {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+.alarm-button {
+
+  box-sizing: border-box;
+  font-family: inherit;
+  padding: 0.8rem 1rem;
+  border-radius: 1rem;
+  border: 4px solid;
+  font-size: 1rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+.friend-card {
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-around;
+}
+.friend-data {
+    border-radius: 50%;
+    /* width: 50px; */
+}
+
+>>>>>>> 031082b1c9af0620cf559f18c0c71dc9f68ccc8c
