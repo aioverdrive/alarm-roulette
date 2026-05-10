@@ -73,5 +73,12 @@ export async function ensureProfileForUser(user: User): Promise<void> {
     return;
   }
 
-  console.error("[ensureProfileForUser] insert", insErr);
+  if (insErr.code === '23503') {
+  // User ID doesn't exist in auth.users — stale session, force re-login
+  await supabaseBrowser.auth.signOut();
+  window.location.replace('/');
+  return;
+}
+console.error("[ensureProfileForUser] insert", insErr);
+
 }

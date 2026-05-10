@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const NAV_ITEMS = [
-  { href: '/alarm',   icon: 'fa-solid fa-alarm-clock', label: 'Alarm'   },
-  { href: '/friends', icon: 'fa-solid fa-user-group',  label: 'Friends' },
-  { href: '/upload',  icon: 'fa-solid fa-microphone',  label: 'Upload'  },
+  { href: '/alarm',   icon: 'fa-solid fa-bell',       label: 'Alarm'   },
+  { href: '/friends', icon: 'fa-solid fa-user-group', label: 'Friends' },
+  { href: '/upload',  icon: 'fa-solid fa-microphone', label: 'Upload'  },
 ];
 
 export function BottomNav() {
@@ -20,11 +20,12 @@ export function BottomNav() {
           className="nav-link"
           style={{ color: pathname.startsWith(href) ? '#FCBA04' : '#fafafa' }}
         >
-          <i className={icon} />
+          <span suppressHydrationWarning>
+            <i className={icon} suppressHydrationWarning />
+          </span>
           <span className="nav-text">{label}</span>
         </Link>
       ))}
-
     </nav>
   );
 }
