@@ -5,58 +5,78 @@
         <link rel="stylesheet" href="/alarm-roulette/alarm-roulette/css/styles.css">
         <meta name=“viewport” content="width=device-width" initial-scale=1.0>
         <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;
+        0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" 
+        rel="stylesheet">
         <script src="https://kit.fontawesome.com/a89918f07b.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div class="alarm-card center">
+    <body class="poppins-semibold">
+        <h1 class="margin-top">Welcome to the <br><span style="font-family: 'Las Vegas';
+        font-size: 2.25rem">Alarm Roulette,</span> Name!</h1>
+        <div class="alarm-card center margin-top">
             <!-- Might need to wrap in different p tags -->
-             <div class="alarm-info-wrapper">
-                <div style="border: dashed red">
-                    <p>S M T W T F S</p>
-                    <p>6:00</p>
+             <div class="alarm-info">
+                <div class="vertical-align">
+                    <p class="days-text">S M T W T F S</p>
+                    <p class="time-text">6:00 AM</p>
                 </div>
-                <div style="border: dashed red">
-                    <input type="checkbox" name="alarm-toggle" id="alarm-toggle">
-                    <label for="alarm-toggle">I don't think i need this label</label>
+                <div class="alarm-checkbox">
+                    <div class="hk-toggle hk-tg-10">
+                        <input type="checkbox" id="tg10">
+                        <label for="tg10"></label>
+
+                    </div>
                     <!-- This p tag will have the most logic behind it -->
                     <p id="feedback">Roulette Ready!</p>
                 </div>
              </div>
              <!-- friends who submitted -->
-              <div class="friends-list" style="border: dashed red">
+              <div class="friends-list">
                 <!-- Name of roulette -->
-                 <p>Baja Blasters' Roulette</p>
-                <div class="friend-card">
-                    <img alt="google-pfp"/>
-                    <p>Name</p>
-                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
-                    <p>Uploaded <br><i>a voice recording.</i></p>
+                <div class="friend-card border-black">
+                    <div class="friend-data">
+                        <img alt="google-pfp"/>
+                    </div>
+                     <div>
+                        <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
+                        <p>[Name] uploaded<br><i> a voice recording.</i></p>
+                     </div>
                 </div>
-                <div class="friend-card">
-                    <img alt="google-pfp"/>
-                    <p>Name</p>
-                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
-                    <p>Uploaded <br><i>a voice recording.</i></p>
+                <div class="friend-card border-red">
+                    <div class="friend-data">
+                        <img alt="google-pfp"/>
+                    </div>
+                    <div>
+                        <p>[Name] uploaded<br><i> a voice recording.</i></p>
+                    </div>
                 </div>
-                <div class="friend-card">
-                    <img alt="google-pfp"/>
-                    <p>Name</p>
-                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
-                    <p>Uploaded <br><i>a voice recording.</i></p>
+                <div class="friend-card border-black">
+                    <div class="friend-data">
+                        <img alt="google-pfp"/>
+                    </div>
+                    <div>
+                        <p>[Name] uploaded<br><i> a voice recording.</i></p>
+                    </div>
                 </div>
-                <div class="friend-card">
-                    <img alt="google-pfp"/>
-                    <p>Name</p>
-                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
-                    <p>Uploaded <br><i>a voice recording.</i></p>
+                <div class="friend-card border-red">
+                    <div class="friend-data">
+                        <img alt="google-pfp"/>
+                    </div>
+                    <div>
+                        <p>[Name] uploaded<br><i> a voice recording.</i></p>
+                    </div>
                 </div>
-                <div class="friend-card">
-                    <img alt="google-pfp"/>
-                    <p>Name</p>
-                    <!-- LOGIC here. write "a voice recording" or the file name depending on type of submission -->
-                    <p>Uploaded <br><i>a voice recording.</i></p>
+                <div class="friend-card border-black">
+                    <div class="friend-data">
+                        <img alt="google-pfp"/>
+                    </div>
+                    <div>
+                        <p>[Name] uploaded<br><i> a voice recording.</i></p>
+                    </div>
                 </div>
-
+                <!-- add a circle for + alarm i think? -->
               </div>
         </div>
         <nav class="nav">
