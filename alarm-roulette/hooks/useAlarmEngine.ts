@@ -16,6 +16,10 @@ interface UseAlarmEngineOptions {
   onReloadAlarms: (uid: string) => void;
 }
 
+// One-shot alarms must have fired within this window to actually ring.
+// Prevents stale past alarms from firing when re-enabled.
+const ONE_SHOT_GRACE_MS = 60_000; // 1 minute
+
 export function useAlarmEngine({
   alarms,
   pool,
@@ -49,16 +53,25 @@ export function useAlarmEngine({
     clearPlayback();
   };
 
-  // Interval-based engine — checks every second
   useEffect(() => {
     const tick = () => {
       if (busyRef.current) return;
 
       const now = Date.now();
-      // Only fire alarms where enabled === true (user's active toggle)
-      const toFire = alarmsRef.current.filter(
-        a => a.enabled !== false && now >= new Date(a.scheduled_at).getTime()
-      );
+
+      const toFire = alarmsRef.current.filter(a => {
+        if (a.enabled === false) return false;
+        const scheduledMs = new Date(a.scheduled_at).getTime();
+        if (now < scheduledMs) return false;
+
+        // For one-shot alarms, only fire if scheduled_at is within the grace window.
+        // This prevents re-enabled stale alarms from firing immediately.
+        const rw = normalizeWeekdays(a.repeat_weekdays);
+        if (rw.length === 0 && now - scheduledMs > ONE_SHOT_GRACE_MS) return false;
+
+        return true;
+      });
+
       if (!toFire.length) return;
 
       busyRef.current = true;
@@ -74,31 +87,21 @@ export function useAlarmEngine({
         audioRef.current = audio;
         void audio.play()
           .then(() => onRingStart())
-          .catch(() => {
-            onRingError();
-          });
+          .catch(() => { onRingError(); });
       }
 
-      // Post-fire: advance repeat alarms; mark one-shots as finished (user deletes manually)
       void (async () => {
         try {
           const uid = userRef.current?.id;
           for (const alarm of toFire) {
             const rw = normalizeWeekdays(alarm.repeat_weekdays);
             if (rw.length > 0) {
-              const nextIso = computeNextRepeatISO(
-                alarm.scheduled_at,
-                rw,
-                Date.now()
-              );
-              await supabaseBrowser
-                .from('alarms')
+              const nextIso = computeNextRepeatISO(alarm.scheduled_at, rw, Date.now());
+              await supabaseBrowser.from('alarms')
                 .update({ scheduled_at: nextIso })
                 .eq('id', alarm.id);
             } else {
-              // One-shot fired: mark disabled so it shows as "Finished" until user deletes it
-              await supabaseBrowser
-                .from('alarms')
+              await supabaseBrowser.from('alarms')
                 .update({ enabled: false })
                 .eq('id', alarm.id);
             }

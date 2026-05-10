@@ -179,17 +179,26 @@ export default function AlarmPageClient() {
     } finally { setBusy(null); }
   };
 
-  const toggleAlarmActive = async (alarm: any) => {
-    if (!user) return;
-    setBusyToggle(alarm.id);
-    try {
-      const { error } = await supabaseBrowser.from('alarms')
-        .update({ enabled: !(alarm.enabled !== false) })
-        .eq('id', alarm.id).eq('setter_id', user.id);
-      if (error) { flash(error.message, 8000); return; }
-      loadAlarms(user.id);
-    } finally { setBusyToggle(null); }
-  };
+const toggleAlarmActive = async (alarm: any) => {
+  if (!user) return;
+
+  // If re-enabling a one-shot with a past scheduled_at, make them pick a new time
+  const rw = normalizeWeekdays(alarm.repeat_weekdays);
+  const isPast = new Date(alarm.scheduled_at).getTime() < Date.now();
+  if (alarm.enabled === false && rw.length === 0 && isPast) {
+    openEditAlarmModal(alarm);
+    return;
+  }
+
+  setBusyToggle(alarm.id);
+  try {
+    const { error } = await supabaseBrowser.from('alarms')
+      .update({ enabled: !(alarm.enabled !== false) })
+      .eq('id', alarm.id).eq('setter_id', user.id);
+    if (error) { flash(error.message, 8000); return; }
+    loadAlarms(user.id);
+  } finally { setBusyToggle(null); }
+};
 
   if (!user) return <p style={{ padding: 24, textAlign: 'center' }}>Please sign in</p>;
 
