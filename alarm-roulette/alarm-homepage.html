@@ -15,21 +15,12 @@
     <body class="poppins-semibold">
         <h1 class="margin-top">Welcome to the <br><span style="font-family: 'Las Vegas';
         font-size: 3rem; color: #FCBA04;">Alarm Roulette,</span> Name!</h1>
-        <div class="alarm-card center margin-top-half">
+        <div class="alarm-card center margin-top-half" style="width: 1fr;">
             <!-- Might need to wrap in different p tags -->
              <div class="alarm-info">
                 <div class="vertical-align">
                     <p class="days-text">S M T W T F S</p>
                     <p class="time-text">6:00 AM</p>
-                </div>
-                <div class="alarm-checkbox">
-                    <div class="hk-toggle hk-tg-10">
-                        <input type="checkbox" id="tg10">
-                        <label for="tg10"></label>
-
-                    </div>
-                    <!-- This p tag will have the most logic behind it -->
-                    <p id="feedback">Roulette Ready!</p>
                 </div>
              </div>
              <!-- friends who submitted -->
@@ -75,6 +66,16 @@
                     <div>
                         <p>[Name] uploaded<br><i> a voice recording.</i></p>
                     </div>
+                </div>
+                <div class="alarm-buttons" style="width: 1fr;">
+                <!-- <button class="alarm-button margin-vertical border-red"><span class="button-label">Turn Off</span></button> -->
+                <button class="alarm-button margin-vertical border-black"><span class="button-label">Edit Alarm</span></button>
+                <div class="hk-toggle hk-tg-10" style="display: flex; justify-content: center; flex-direction: column; gap: 10px;">
+                        <input type="checkbox" id="tg10">
+                        <label for="tg10"></label>
+                        <!-- logic here -->
+                        <span>Roulette Ready!</span>
+                </div>
                 </div>
                 <!-- add a circle for + alarm i think? -->
               </div>
