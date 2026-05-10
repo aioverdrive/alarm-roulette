@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import type { User } from "@supabase/supabase-js";
 import { supabaseBrowser } from "@/lib/supabaseBrowser";
+import { ensureProfileForUser } from "@/lib/ensureProfile";
 
 export default function SupabaseAuth() {
   const [user, setUser] = useState<User | null>(null);
@@ -17,6 +18,12 @@ export default function SupabaseAuth() {
       } = await supabaseBrowser.auth.getSession();
 
       if (!isMounted) return;
+
+      if (session?.user) {
+        await ensureProfileForUser(session.user);
+      }
+
+      if (!isMounted) return;
       setUser(session?.user ?? null);
       setStatus(session ? "You are signed in." : "You are not signed in.");
     }
@@ -27,24 +34,14 @@ export default function SupabaseAuth() {
       data: { subscription },
     } = supabaseBrowser.auth.onAuthStateChange(async (_event, session) => {
       if (!isMounted) return;
+
+      if (session?.user) {
+        await ensureProfileForUser(session.user);
+      }
+
+      if (!isMounted) return;
       setUser(session?.user ?? null);
       setStatus(session ? "You are signed in." : "You are not signed in.");
-
-      // Insert profile on sign-in
-      if (_event === 'SIGNED_IN' && session?.user) {
-        const { error } = await supabaseBrowser
-          .from('profiles')
-          .upsert({
-            user_id: session.user.id,
-            full_name: session.user.user_metadata?.full_name || null,
-            email: session.user.user_metadata?.email || session.user.email,
-            avatar_url: session.user.user_metadata?.avatar_url || null,
-          }, { onConflict: 'user_id' });
-
-        if (error) {
-          console.error('Error inserting profile:', error);
-        }
-      }
     });
 
     return () => {
@@ -58,7 +55,7 @@ export default function SupabaseAuth() {
     const { error } = await supabaseBrowser.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: window.location.origin,
+        redirectTo: `${window.location.origin}/alarms`,
       },
     });
 
@@ -68,13 +65,17 @@ export default function SupabaseAuth() {
   };
 
   const signOut = async () => {
-    const { error } = await supabaseBrowser.auth.signOut();
+    setStatus("Signing out...");
+    let { error } = await supabaseBrowser.auth.signOut({ scope: "global" });
+    if (error) {
+      ({ error } = await supabaseBrowser.auth.signOut({ scope: "local" }));
+    }
     if (error) {
       setStatus(`Sign-out failed: ${error.message}`);
-    } else {
-      setUser(null);
-      setStatus("Signed out.");
+      return;
     }
+    setUser(null);
+    setStatus("Signed out.");
   };
 
   return (
@@ -88,10 +89,10 @@ export default function SupabaseAuth() {
 
       {user ? (
         <div className="rounded-2xl bg-slate-100 p-6 text-slate-900 dark:bg-slate-900 dark:text-slate-100">
-          <p className="text-sm font-medium">Signed in as:</p>
-          <pre className="mt-3 overflow-x-auto text-xs text-slate-700 dark:text-slate-200">
-            {JSON.stringify({ id: user.id, email: user.email, metadata: user.user_metadata }, null, 2)}
-          </pre>
+          <p className="text-sm font-medium">Signed in</p>
+          <p className="mt-2 text-sm text-slate-600 dark:text-slate-300">
+            {user.email ?? "Google account"}
+          </p>
           <button
             type="button"
             onClick={signOut}
