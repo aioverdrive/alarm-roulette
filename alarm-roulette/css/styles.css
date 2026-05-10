@@ -72,6 +72,9 @@ h1 {
     margin-left: auto;
     margin-right: auto;
 }
+.recording-instructions {
+    font-size: 1.5rem;
+}
 .friend-group-name {
     font-size: 2rem;
 }

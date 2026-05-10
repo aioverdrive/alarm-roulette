@@ -1,0 +1,42 @@
+
+<!DOCTYPE HTML>
+<html>
+<head>
+        <title>Welcome</title>
+        <link rel="stylesheet" href="/alarm-roulette/alarm-roulette/css/styles.css">
+        <meta name="google-signin-client_id" content="954273560457-obvm6btnt1vd27pnpf3qk99brpln98vc.apps.googleusercontent.com">
+        <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;
+        0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" 
+        rel="stylesheet">
+</head>
+<body class="poppins-semibold">
+        <h1 class="margin-top">Welcome to <br><span style="font-family: 'Las Vegas';
+        font-size: 3rem; color: #FCBA04;">Alarm Roulette</span></h1>
+        <p class="poppins-semibold-italic tip-text margin-top-half">Turn your dull mornings into random hijinks!</p>
+  <div id="my-signin2" style="display: flex; justify-content: center; margin-top: 30vh;"></div>
+  <script>
+    function onSuccess(googleUser) {
+      console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
+    }
+    function onFailure(error) {
+      console.log(error);
+    }
+    function renderButton() {
+      gapi.signin2.render('my-signin2', {
+        'scope': 'profile email',
+        'width': 240,
+        'height': 50,
+        'longtitle': true,
+        'theme': 'dark',
+        'onsuccess': onSuccess,
+        'onfailure': onFailure
+      });
+    }
+  </script>
+
+  <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
+</body>
+</html>
