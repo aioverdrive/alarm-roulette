@@ -1,16 +1,4 @@
--- Supabase schema for Alarm Roulette user data
-
-create extension if not exists "pgcrypto";
-
-create table profiles (
-  id uuid primary key default gen_random_uuid(),
-  user_id uuid references auth.users(id) not null unique,
-  full_name text,
-  email text,
-  avatar_url text,
-  friend_code text unique not null,
-  created_at timestamptz not null default now()
-);
+-- Add friend groups, members, ringtones tables
 
 create table friend_groups (
   id uuid primary key default gen_random_uuid(),
@@ -35,34 +23,13 @@ create table ringtones (
   created_at timestamptz not null default now()
 );
 
-create table alarms (
-  id uuid primary key default gen_random_uuid(),
-  setter_id uuid references auth.users(id) not null,
-  target_id uuid references auth.users(id) not null,
-  group_id uuid references friend_groups(id) not null,
-  ringtone_id uuid references ringtones(id) not null,
-  scheduled_at timestamptz not null,
-  enabled boolean not null default true,
-  created_at timestamptz not null default now(),
-  constraint alarms_different_users check (setter_id != target_id)
-);
+-- Update profiles
+alter table profiles add column friend_code text unique;
 
--- Enable RLS
-alter table profiles enable row level security;
+-- Enable RLS for new tables
 alter table friend_groups enable row level security;
 alter table group_members enable row level security;
 alter table ringtones enable row level security;
-alter table alarms enable row level security;
-
--- Policies for profiles
-create policy "Users can view their own profile" on profiles
-  for select using (auth.uid() = user_id);
-
-create policy "Users can insert their own profile" on profiles
-  for insert with check (auth.uid() = user_id);
-
-create policy "Users can update their own profile" on profiles
-  for update using (auth.uid() = user_id);
 
 -- Policies for friend_groups
 create policy "Users can view groups they are members of" on friend_groups
@@ -108,7 +75,21 @@ create policy "Users can update their own ringtones" on ringtones
 create policy "Users can delete their own ringtones" on ringtones
   for delete using (auth.uid() = user_id);
 
--- Policies for alarms
+-- Update alarms table and policies
+drop policy "Users can view their own alarms" on alarms;
+drop policy "Users can insert their own alarms" on alarms;
+drop policy "Users can update their own alarms" on alarms;
+drop policy "Users can delete their own alarms" on alarms;
+
+alter table alarms add column setter_id uuid references auth.users(id);
+alter table alarms add column target_id uuid references auth.users(id);
+alter table alarms add column group_id uuid references friend_groups(id);
+alter table alarms add column ringtone_id uuid references ringtones(id);
+alter table alarms drop column user_id;
+alter table alarms drop column title;
+alter table alarms drop column sound;
+alter table alarms add constraint alarms_different_users check (setter_id != target_id);
+
 create policy "Users can view alarms where they are setter or target" on alarms
   for select using (auth.uid() = setter_id or auth.uid() = target_id);
 

@@ -1,0 +1,824 @@
+/* ============================================================
+   alarms.css — Alarm Roulette design system
+   All colours, spacing, and layout. Zero logic lives here.
+   ============================================================
+
+   FONT NOTE
+   ─────────
+   Copy LasVegas_Fabulous_Regular.otf into your project at:
+     /public/fonts/LasVegas_Fabulous_Regular.otf
+   The @font-face below points there.
+
+   COLOUR PALETTE
+   ──────────────
+   Background  #010101  (near-black)
+   Text        #fafafa  (near-white)
+   Primary     #A50104  (deep red)
+   Secondary   #590004  (dark red)
+   Accent      #FCBA04  (gold)
+   Card bg     rgba(2, 102, 0, 0.5)  (dark green glass)
+   ============================================================ */
+
+
+/* ─── Fonts ──────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Las Vegas';
+  src: url('/fonts/LasVegas_Fabulous_Regular.otf') format('opentype');
+  font-display: swap;
+}
+
+/* Poppins is loaded via Google Fonts link in your layout/page head:
+   https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap */
+
+.poppins-semibold {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
+}
+
+
+/* ─── Reset & base ───────────────────────────────────────── */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  line-height: 1.4;
+}
+
+.alarm-root {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  background-color: #010101;
+  color: #fafafa;
+  text-align: center;
+  /* leave room for fixed bottom nav */
+  padding-bottom: 65px;
+  min-height: 100vh;
+}
+
+
+/* ─── Utility ────────────────────────────────────────────── */
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.margin-top      { margin-top: 20px; }
+.margin-top-half { margin-top: 10px; }
+.margin-vertical { margin: 20px 0; }
+.vertical-align  { display: flex; flex-direction: column; justify-content: center; }
+
+
+/* ─── Typography ─────────────────────────────────────────── */
+
+h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  padding: 0 16px;
+}
+
+.las-vegas-title {
+  font-family: 'Las Vegas', cursive;
+  font-size: 3rem;
+  color: #FCBA04;
+  display: block;
+  line-height: 1.1;
+}
+
+.time-text {
+  font-size: 3rem;
+  line-height: 1;
+}
+
+.days-text {
+  padding-top: 10px;
+  font-size: 0.8rem;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.7);
+}
+
+.tip-text {
+  width: 70%;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  font-size: 0.9rem;
+}
+
+.friend-group-name { font-size: 1.5rem; }
+.friend-list-hint  { font-size: 0.75rem; color: rgba(255,255,255,0.65); }
+
+.flash-msg {
+  text-align: center;
+  padding: 10px 16px;
+  font-size: 0.875rem;
+  color: #FCBA04;
+}
+
+.friend-code-banner {
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  padding: 8px 0 0;
+}
+
+.friend-code-banner strong {
+  color: #FCBA04;
+  letter-spacing: 0.15em;
+}
+
+
+/* ─── Cards (shared shell) ───────────────────────────────── */
+
+.alarm-card,
+.friend-group-card,
+.bg-icon-card {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 90%;
+  border-radius: 1rem;
+  background-color: rgba(2, 102, 0, 0.5);
+  padding: 16px;
+}
+
+
+/* ─── Alarm card innards ─────────────────────────────────── */
+
+.alarm-info {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 8px 0;
+}
+
+.alarm-checkbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.alarm-feedback {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.75);
+}
+
+/* Edit / Delete row at bottom of alarm card */
+.alarm-card-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+
+/* ─── Friends list inside alarm card ─────────────────────── */
+
+.friends-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+}
+
+.friend-card {
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 4px;
+  text-align: left;
+}
+
+.friend-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.friend-card p {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  color: rgba(255,255,255,0.9);
+}
+
+.friend-card p i {
+  color: rgba(255,255,255,0.6);
+}
+
+.friends-empty {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.45);
+  text-align: center;
+  padding: 8px 0;
+}
+
+
+/* ─── HK Toggle switch ───────────────────────────────────── */
+/* Base styles (the hk-toggle library base wasn't in friend's CSS — added here) */
+
+.hk-toggle {
+  position: relative;
+  display: inline-block;
+}
+
+.hk-toggle input {
+  display: none;
+}
+
+.hk-toggle label {
+  display: block;
+  width: 68px;
+  height: 30px;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.hk-toggle label::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Variant 10 — Pulse */
+.hk-tg-10 label          { background: #232733; }
+.hk-tg-10 label::after   { background: #fff; }
+
+.hk-tg-10 input:checked + label { background: #6a5cff; }
+.hk-tg-10 input:checked + label::after {
+  transform: translateX(38px);
+  animation: hk-pulse 0.8s ease;
+}
+
+@keyframes hk-pulse {
+  0%   { box-shadow: 0 0 0 0   rgba(106, 92, 255, 0.7); }
+  100% { box-shadow: 0 0 0 14px rgba(106, 92, 255, 0); }
+}
+
+
+/* ─── Buttons ────────────────────────────────────────────── */
+
+/* Primary black/red pill */
+.btn-primary {
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover  { background: #590004; }
+.btn-primary:disabled { opacity: 0.4; cursor: default; }
+
+.btn-primary--pill { border-radius: 999px; white-space: nowrap; }
+
+/* Secondary ghost */
+.btn-secondary {
+  padding: 6px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.1);
+  color: #fafafa;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-secondary:hover { background: rgba(255,255,255,0.18); }
+
+/* Danger */
+.btn-danger {
+  padding: 6px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: transparent;
+  color: #ff6b6b;
+  border: 1px solid rgba(255,107,107,0.4);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-danger:hover { background: rgba(255,107,107,0.1); }
+
+/* New alarm full-width */
+.btn-new-alarm {
+  display: block;
+  width: 90%;
+  margin: 16px auto 0;
+  padding: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 1rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-new-alarm:hover { background: #590004; }
+
+/* Remove (ringtone list) */
+.btn-remove {
+  font-family: "Poppins", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #ff6b6b;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+/* Stop alarm big red pill */
+.btn-stop {
+  min-width: 260px;
+  padding: 18px 36px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(165, 1, 4, 0.55);
+}
+
+/* Modal action buttons */
+.btn-modal-cancel {
+  flex: 1;
+  padding: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.08);
+  color: #fafafa;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn-modal-save {
+  flex: 1;
+  padding: 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.btn-modal-save:disabled,
+.btn-modal-cancel:disabled { opacity: 0.5; cursor: default; }
+
+/* Friend add button (inside input row) */
+.btn-add-friend {
+  padding: 10px 18px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.btn-add-friend:disabled { opacity: 0.45; cursor: default; }
+
+/* Icon card action button */
+.btn-icon-card {
+  margin-top: 12px;
+  padding: 10px 24px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  background: #FCBA04;
+  color: #010101;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+/* Add friend inside friend-group-card */
+.btn-add-in-card {
+  padding: 8px 14px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  background: #A50104;
+  color: #fafafa;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+/* ─── Alarm section ──────────────────────────────────────── */
+
+.alarm-section { width: 100%; }
+
+.alarm-section__empty {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.45);
+  margin-top: 20px;
+}
+
+
+/* ─── bg-icon-card (upload / start roulette) ─────────────── */
+
+.bg-icon-card {
+  align-items: center;
+  padding: 24px 16px;
+  gap: 8px;
+  color: rgba(255,255,255,0.85);
+}
+
+.bg-icon-card i { display: block; }
+
+.recording-instructions {
+  font-size: 0.9rem;
+  color: rgba(255,255,255,0.7);
+}
+
+/* File input */
+.file-input {
+  display: block;
+  margin: 12px auto 0;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+
+
+/* ─── Friend group card ──────────────────────────────────── */
+
+.friend-group-card {
+  padding: 16px;
+  text-align: left;
+}
+
+.friend-group-card-bottom {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 0.8rem;
+}
+
+/* Individual friend row (friends page) */
+.friend-list-item {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.875rem;
+  text-align: left;
+}
+
+
+/* ─── Ringtone list ──────────────────────────────────────── */
+
+.ringtones-list { margin-top: 16px; }
+
+.ringtone-item {
+  padding: 8px 4px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: left;
+}
+
+.ringtones-section__empty {
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.4);
+  margin-top: 12px;
+}
+
+
+/* ─── Schedule / edit modal ──────────────────────────────── */
+
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.72);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: max(16px, env(safe-area-inset-bottom));
+}
+
+.modal {
+  width: 100%;
+  max-width: 440px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #111;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 20px;
+  padding: 24px 20px 28px;
+  box-shadow: 0 -8px 40px rgba(0, 0, 0, 0.6);
+}
+
+.modal__title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fafafa;
+  margin: 0 0 6px;
+}
+
+.modal__subtitle {
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0 0 20px;
+}
+
+.modal__repeat-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.modal__repeat-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #fafafa;
+}
+
+.modal__weekday-picker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+
+.btn-weekday {
+  padding: 6px 10px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  border-radius: 8px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: transparent;
+  color: rgba(255,255,255,0.6);
+  cursor: pointer;
+}
+
+.btn-weekday--active {
+  border-color: #FCBA04;
+  background: #FCBA04;
+  color: #010101;
+}
+
+.modal__date-label {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.5);
+  margin: 8px 0;
+}
+
+.modal__date-input {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background: rgba(255,255,255,0.06);
+  color: #fafafa;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.modal__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+
+/* ─── Drum time picker ───────────────────────────────────── */
+
+.drum-picker {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  padding: 12px 0;
+}
+
+.drum-column {
+  position: relative;
+  width: 72px;
+  height: 132px;
+  overflow: hidden;
+}
+
+.drum-column__highlight {
+  position: absolute;
+  top: 44px;
+  left: 0;
+  right: 0;
+  height: 44px;
+  border-top: 1px solid #FCBA04;
+  border-bottom: 1px solid #FCBA04;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.drum-column__scroll {
+  height: 100%;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  padding-top: 44px;
+  padding-bottom: 44px;
+  scrollbar-width: none;
+}
+.drum-column__scroll::-webkit-scrollbar { display: none; }
+
+.drum-item {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scroll-snap-align: center;
+  font-size: 1.375rem;
+  font-weight: 400;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+  user-select: none;
+}
+
+.drum-item--selected {
+  font-weight: 700;
+  color: #fafafa;
+}
+
+.drum-separator {
+  display: flex;
+  align-items: center;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #FCBA04;
+}
+
+
+/* ─── Alarm ringing overlay ──────────────────────────────── */
+
+.alarm-ringing {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: rgba(1, 1, 1, 0.88);
+  backdrop-filter: blur(22px);
+  -webkit-backdrop-filter: blur(22px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 28px;
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+}
+
+.alarm-ringing__title {
+  font-family: 'Las Vegas', cursive;
+  color: #FCBA04;
+  font-size: 4rem;
+  margin-bottom: 12px;
+}
+
+.alarm-ringing__subtitle {
+  color: rgba(255,255,255,0.55);
+  font-size: 1.0625rem;
+  font-weight: 600;
+  margin-bottom: 48px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* ─── Friends section input row ──────────────────────────── */
+
+.friends-section__add-row {
+  display: flex;
+  gap: 8px;
+  margin: 12px auto;
+  width: 90%;
+}
+
+.friends-section__input {
+  flex: 1;
+  padding: 10px 12px;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  background: rgba(255,255,255,0.06);
+  color: #fafafa;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  outline: none;
+}
+
+.friends-section__input::placeholder { color: rgba(255,255,255,0.35); }
+
+
+/* ─── Settings page ──────────────────────────────────────── */
+
+.settings-placeholder {
+  color: rgba(255,255,255,0.4);
+  font-size: 0.875rem;
+  margin-top: 24px;
+}
+
+
+/* ─── Bottom nav ─────────────────────────────────────────── */
+
+.nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 55px;
+  box-shadow: 0 0 3px rgba(0,0,0,0.4);
+  background-color: #010101;
+  overflow-x: auto;
+  display: flex;
+  z-index: 100;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #fafafa;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-family: "Poppins", sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+}
+
+.nav-link:hover,
+.nav-link--active {
+  background-color: #FCBA04;
+  color: #010101;
+}
+
+.nav-text {
+  font-size: 0.65rem;
+  margin-top: 2px;
+  font-weight: 600;
+}
