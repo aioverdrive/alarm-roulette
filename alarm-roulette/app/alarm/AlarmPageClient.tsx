@@ -21,8 +21,8 @@ import { AlarmList } from '@/components/alarms/AlarmList';
 import { AlarmModal } from '@/components/alarms/AlarmModal';
 import { AlarmRinging } from '@/components/alarms/AlarmRinging';
 import { FriendsSection } from '@/components/alarms/FriendsSection';
-import { RingtonesSection } from '@/components/alarms/RingtonesSection (1)';
-import type { DrumTime } from '@/components/alarms/DrumPicker (1)';
+import { RingtonesSection } from '@/components/alarms/RingtonesSection';
+import type { DrumTime } from '@/components/alarms/DrumPicker';
 
 export default function AlarmPageClient() {
   const [user, setUser] = useState<User | null>(null);
