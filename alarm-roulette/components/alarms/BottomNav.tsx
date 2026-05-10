@@ -24,6 +24,7 @@ export function BottomNav() {
           <span className="nav-text">{label}</span>
         </Link>
       ))}
+
     </nav>
   );
 }
