@@ -5,23 +5,28 @@
         <link rel="stylesheet" href="/alarm-roulette/alarm-roulette/css/styles.css">
         <meta name=“viewport” content="width=device-width" initial-scale=1.0>
         <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;
+        0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" 
+        rel="stylesheet">
         <script src="https://kit.fontawesome.com/a89918f07b.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <h1>Your Friend Groups</h1>
-        <div class="friend-group-card center" style="border: dotted red;">
-            <div class="friend-group-card-segment" style="border: dotted blue">
-                <p>[Friend group name]'s Roulette</p>
-                <p>Includes [Name 1], [Name 2], and [X] more.</p>
+    <body class="poppins-semibold">
+        <h1 class="margin-top">Your Friends</h1>
+        <div class="friend-group-card center margin-top">
+            <div>
+                <p class="friend-group-name">[Friend group name]'s Roulette</p>
+                <p class="friend-list margin-top-half">Includes [Name 1], [Name 2], and [X] more.</p>
                 <!-- make the X a tooltip to reveal all the names -->
             </div>
-            <div class="friend-group-card-segment" style="border: dotted green">
-                <span>You've spun this alarm roulette [X] times</span>
+            <div class="friend-group-card-bottom margin-top-half">
+                <span>You've spun this alarm <br>roulette [X] times</span>
                 <button><i class="fa-solid fa-person-circle-plus"></i>Add friend</button>
             </div>
         </div>
-        <div class="bg-icon-card" style="border: dotted grey">
-            <i class="fa-solid fa-plus"></i>
+        <div class="bg-icon-card center margin-top">
+            <i class="fa-solid fa-plus fa-5x center"></i>
             <p>Start another roulette</p>
         </div>
         <nav class="nav">
@@ -35,7 +40,7 @@
             </a>
             <a href="upload-sound.html" class="nav-link">
                 <i class="fa-solid fa-microphone"></i>
-                <span class="nav-text">Upload Sound</span>
+                <span class="nav-text">Upload</span>
             </a>
             <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-gear"></i>

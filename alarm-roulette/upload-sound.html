@@ -5,18 +5,30 @@
         <link rel="stylesheet" href="/alarm-roulette/alarm-roulette/css/styles.css">
         <meta name=“viewport” content="width=device-width" initial-scale=1.0>
         <meta charset="UTF-8">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;
+        0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" 
+        rel="stylesheet">
         <script src="https://kit.fontawesome.com/a89918f07b.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <h1>Upload your sound!</h1>
-        <div class="bg-icon-card" style="border: dotted grey">
-            <i class="fa-solid fa-microphone"></i>
-            <p>Press the big microphone for a voice recording.</p>
+    <body class="poppins-semibold">
+        <h1 class="margin-top">Upload your sound!</h1>
+        <div class="bg-icon-card center margin-top-half">
+            <i class="fa-solid fa-microphone fa-5x center margin-top"></i>
+            <p class="recording-instructions margin-vertical">Press the big microphone to start recording.</p>
         </div>
         <!-- STRETCH GOAL: rotating loading tips for your voice recording -->
-        <p>Inspo: Beatbox so badly that your friend has no choice but to turn it off</p>
+        <p class="poppins-semibold-italic margin-vertical tip-text">Stuck? Consider: <br>Beatbox so badly that your friend has no choice but to turn it off</p>
         <!-- Could be a card? But i might be overdoing it on the cards -->
-        <p>Or upload an audio file <a href="#">here.</a></p>
+        <div class="bg-icon-card center">
+            <i class="fa-solid fa-upload fa-5x center margin-top"></i>
+            <p class="recording-instructions margin-vertical">Or upload an audio file.</p>
+        </div>
+                <!-- STRETCH GOAL: rotating loading tips for your audio file -->
+        <div>
+            <p class="poppins-semibold-italic margin-vertical tip-text ">Stuck? Consider: <br>Literally just fart noises.</p>
+        </div>
         <nav class="nav">
             <a href="alarm-homepage.html" class="nav-link">
                 <i class="fa-solid fa-alarm-clock"></i>
@@ -28,7 +40,7 @@
             </a>
             <a href="upload-sound.html" class="nav-link">
                 <i class="fa-solid fa-microphone"></i>
-                <span class="nav-text">Upload Sound</span>
+                <span class="nav-text">Upload</span>
             </a>
             <a href="settings.html" class="nav-link">
                 <i class="fa-solid fa-gear"></i>

@@ -1,5 +1,5 @@
 :root {
-    --bg-color: var(#F3F3F3);
+    --bg-color: var(#010101);
     --text-color: var(#250001);
     --primary-color: var(#A50104);
     --secondary-color: var(#590004);
@@ -11,8 +11,12 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    line-height: 1.4;
+}
 body {
-    background-color: #F3F3F3;
+    background-color: #010101;
+    color: #fafafa;
     text-align: center;
     margin: 0 0 55px 0;
 }
@@ -24,11 +28,28 @@ body {
 .margin-top {
     margin-top: 20px;
 }
+.margin-top-half {
+    margin-top: 10px;
+}
+.margin-vertical {
+    margin: 20px 0 20px 0;
+}
+.border-red {
+    border-color: #A50104;
+}
+.border-black {
+    border-color: #010101;
+}
 /* Fonts */
 .poppins-semibold {
   font-family: "Poppins", sans-serif;
   font-weight: 600;
   font-style: normal;
+}
+.poppins-semibold-italic {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-style: italic;
 }
 @font-face {
     font-family: 'Las Vegas';
@@ -37,13 +58,29 @@ body {
 /* Text */
 h1 {
     text-align: center;
-    font-size: 2rem;
+    font-size: 2.5rem;
 }
 .time-text {
     font-size: 3rem;
 }
 .days-text {
     padding-top: 10px;
+}
+.tip-text {
+    width:70%;
+    text-align:center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.friend-group-name {
+    font-size: 2rem;
+}
+.friend-list {
+    font-size: 0.75rem;
+}
+.friend-group-card-bottom {
+    display: flex;
+    justify-content: space-around;
 }
 /* Nav */
 .nav {
@@ -52,9 +89,13 @@ h1 {
     width: 100%;
     height: 55px;
     box-shadow: 0 0 3px rgba(0,0,0, 0.25);
-    background-color: #F3F3F3;
+    background-color: #010101;
     overflow-x: auto;
     display: flex;
+}
+.nav-link, a {
+    text-decoration: none;
+    color: #fafafa;
 }
 .nav-link {
     display: flex;
@@ -65,8 +106,6 @@ h1 {
     min-width: 50px;
     overflow: hidden;
     white-space: nowrap;
-    text-decoration: none;
-    color: #250001;
     -webkit-tap-highlight-color: transparent;
     transition: background-color 0.1s ease-in-out;
 }
@@ -99,37 +138,27 @@ h1 {
 }
 
 
-.alarm-card, .friend-group-card {
+.alarm-card, .friend-group-card, .bg-icon-card {
     display:flex;
     justify-content: center;
     flex-direction:column;
     width: 90%;
-    /* border: 4px solid #A50104; */
     border-radius: 1rem;
     /* primary color but transparent */
-    background-color: rgba(165, 1, 4, 0.25);
+    background-color: rgba(2, 102, 0, .5);
 }
+
 .alarm-info {
     display:flex;
     justify-content: space-around;
 }
 .friend-card {
-    color: #F3F3F3;
-    border: 4px solid;
     border-radius: 10px;
     display: flex;
     justify-content: space-around;
 }
 .friend-data {
     border-radius: 50%;
-    width: 50px;
+    /* width: 50px; */
 }
-.border-red {
-    border-color: #A50104;
-}
-.border-black {
-    border-color: #250001;
-}
-/* .friend-group-card-segment {
-    
-} */
+
