@@ -39,28 +39,48 @@ export function AlarmModal({
   return (
     <div
       role="presentation"
-      className="modal-backdrop"
       onClick={e => { if (e.target === e.currentTarget) onClose(); }}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: 'rgba(0,0,0,0.75)',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        zIndex: 100,
+      }}
     >
       <div
         role="dialog"
         aria-modal="true"
         aria-labelledby="alarm-modal-title"
-        className="modal"
         onClick={e => e.stopPropagation()}
+        style={{
+          background: '#010101',
+          border: '1px solid rgba(2, 102, 0, 0.5)',
+          borderRadius: '1rem 1rem 0 0',
+          width: '100%',
+          maxWidth: '480px',
+          padding: '24px 20px 32px',
+          fontFamily: 'Poppins, sans-serif',
+          color: '#fafafa',
+        }}
       >
-        <h2 id="alarm-modal-title" className="modal__title">
+        <h2
+          id="alarm-modal-title"
+          style={{ textAlign: 'center', fontSize: '1.5rem', marginBottom: '6px' }}
+        >
           {editingAlarmId ? 'Edit Alarm' : 'New Alarm'}
         </h2>
-        <p className="modal__subtitle">
+        <p style={{ textAlign: 'center', fontSize: '0.8rem', opacity: 0.65, marginBottom: '16px' }}>
           A random sound from your friends will play — you won't know which one.
         </p>
 
         <AlarmPicker value={drumTime} onChange={onDrumTimeChange} />
 
         {/* Repeat toggle */}
-        <div className="modal__repeat-row">
-          <span className="modal__repeat-label">Repeat</span>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', margin: '16px 0 8px' }}>
+          <span style={{ fontWeight: 600 }}>Repeat</span>
           <div className="hk-toggle hk-tg-10">
             <input
               type="checkbox"
@@ -74,13 +94,24 @@ export function AlarmModal({
 
         {/* Weekday chips */}
         {repeatEnabled && (
-          <div className="modal__weekday-picker">
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '8px', flexWrap: 'wrap', marginBottom: '12px' }}>
             {WEEKDAY_PRESETS.map(({ d, short }) => (
               <button
                 key={d}
                 type="button"
                 onClick={() => onToggleRepeatDay(d)}
-                className={`btn-weekday ${repeatDays.includes(d) ? 'btn-weekday--active' : ''}`}
+                style={{
+                  width: '38px',
+                  height: '38px',
+                  borderRadius: '50%',
+                  border: '1px solid #fafafa',
+                  background: repeatDays.includes(d) ? '#A50104' : 'transparent',
+                  color: '#fafafa',
+                  fontFamily: 'Poppins, sans-serif',
+                  fontWeight: 600,
+                  fontSize: '0.85rem',
+                  cursor: 'pointer',
+                }}
               >
                 {short}
               </button>
@@ -90,8 +121,11 @@ export function AlarmModal({
 
         {/* Date (one-shot only) */}
         {!repeatEnabled && (
-          <>
-            <label htmlFor="alarm-modal-date" className="modal__date-label">
+          <div style={{ marginBottom: '12px' }}>
+            <label
+              htmlFor="alarm-modal-date"
+              style={{ display: 'block', marginBottom: '4px', fontWeight: 600 }}
+            >
               Date
             </label>
             <input
@@ -99,16 +133,56 @@ export function AlarmModal({
               type="date"
               value={alarmDate}
               onChange={e => onDateChange(e.target.value)}
-              className="modal__date-input"
+              style={{
+                width: '100%',
+                background: 'rgba(255,255,255,0.08)',
+                border: '1px solid rgba(255,255,255,0.2)',
+                borderRadius: '8px',
+                color: '#fafafa',
+                padding: '8px 12px',
+                fontFamily: 'Poppins, sans-serif',
+                fontSize: '1rem',
+              }}
             />
-          </>
+          </div>
         )}
 
-        <div className="modal__actions">
-          <button type="button" onClick={onClose} disabled={busy} className="btn-modal-cancel">
+        <div style={{ display: 'flex', gap: '12px', marginTop: '16px' }}>
+          <button
+            type="button"
+            onClick={onClose}
+            disabled={busy}
+            style={{
+              flex: 1,
+              background: 'transparent',
+              border: '1px solid #fafafa',
+              color: '#fafafa',
+              borderRadius: '8px',
+              padding: '10px',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 600,
+              cursor: 'pointer',
+            }}
+          >
             Cancel
           </button>
-          <button type="button" onClick={onSave} disabled={busy} className="btn-modal-save">
+          <button
+            type="button"
+            onClick={onSave}
+            disabled={busy}
+            style={{
+              flex: 1,
+              background: 'rgba(2, 102, 0, 0.5)',
+              border: 'none',
+              color: '#fafafa',
+              borderRadius: '8px',
+              padding: '10px',
+              fontFamily: 'Poppins, sans-serif',
+              fontWeight: 600,
+              cursor: 'pointer',
+              opacity: busy ? 0.6 : 1,
+            }}
+          >
             {busy ? 'Saving…' : editingAlarmId ? 'Save' : 'Schedule'}
           </button>
         </div>

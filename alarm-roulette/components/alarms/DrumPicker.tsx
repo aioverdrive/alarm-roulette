@@ -36,7 +36,7 @@ function DrumColumn({
 
   return (
     <div style={{ position: 'relative', width: 72, height: ITEM_H * 3, overflow: 'hidden' }}>
-      {/* Selection highlight */}
+      {/* Selection highlight matching the card border style */}
       <div
         style={{
           position: 'absolute',
@@ -44,8 +44,8 @@ function DrumColumn({
           left: 0,
           right: 0,
           height: ITEM_H,
-          borderTop: '1px solid #ccc',
-          borderBottom: '1px solid #ccc',
+          borderTop: '1px solid rgba(252,186,4,0.5)',
+          borderBottom: '1px solid rgba(252,186,4,0.5)',
           pointerEvents: 'none',
           zIndex: 1,
         }}
@@ -74,9 +74,10 @@ function DrumColumn({
               scrollSnapAlign: 'center',
               fontSize: 22,
               fontWeight: v === selected ? 600 : 400,
-              color: v === selected ? '#000' : '#aaa',
+              color: v === selected ? '#FCBA04' : 'rgba(250,250,250,0.35)',
               cursor: 'pointer',
               userSelect: 'none',
+              fontFamily: 'Poppins, sans-serif',
             }}
           >
             {v}
@@ -97,7 +98,7 @@ export function AlarmPicker({
   return (
     <div style={{ display: 'flex', gap: 8, justifyContent: 'center', padding: '12px 0' }}>
       <DrumColumn items={HOURS} selected={value.hour} onSelect={h => onChange({ ...value, hour: h })} />
-      <div style={{ display: 'flex', alignItems: 'center', fontSize: 22, fontWeight: 600 }}>:</div>
+      <div style={{ display: 'flex', alignItems: 'center', fontSize: 22, fontWeight: 600, color: '#FCBA04' }}>:</div>
       <DrumColumn items={MINUTES} selected={value.minute} onSelect={m => onChange({ ...value, minute: m })} />
       <DrumColumn items={PERIODS} selected={value.period} onSelect={p => onChange({ ...value, period: p })} />
     </div>

@@ -1,25 +1,32 @@
 :root {
-    --bg-color: var(#010101);
-    --text-color: var(#250001);
-    --primary-color: var(#A50104);
-    --secondary-color: var(#590004);
-    --accent-color: var(#FCBA04)l
+    --bg-color: #010101;
+    --text-color: #fafafa;
+    --primary-color: rgba(2, 102, 0, 0.5);
+    --secondary-color: rgba(2, 102, 0, 0.5);
+    --accent-color: #FCBA04;
+    --card-color: rgba(2, 102, 0, 0.5);
 }
+
 /* remove default styling */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 html {
     line-height: 1.4;
 }
+
 body {
     background-color: #010101;
     color: #fafafa;
     text-align: center;
     margin: 0 0 55px 0;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
 }
+
 /* Utility */
 .center {
     margin-left: auto;
@@ -34,27 +41,24 @@ body {
 .margin-vertical {
     margin: 20px 0 20px 0;
 }
-.border-red {
-    border-color: #A50104;
-}
-.border-black {
-    border-color: #010101;
-}
+
 /* Fonts */
 .poppins-semibold {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: normal;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 .poppins-semibold-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-style: italic;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: italic;
 }
+
 @font-face {
     font-family: 'Las Vegas';
-    src: url(LasVegas\ Fabulous\ Regular.otf);
+    src: url('/fonts/LasVegas Fabulous Regular.otf') format('opentype');
 }
+
 /* Text */
 h1 {
     text-align: center;
@@ -62,13 +66,15 @@ h1 {
 }
 .time-text {
     font-size: 3rem;
+    text-align: left;
 }
 .days-text {
     padding-top: 10px;
+    text-align: left;
 }
 .tip-text {
-    width:70%;
-    text-align:center;
+    width: 70%;
+    text-align: center;
     margin-left: auto;
     margin-right: auto;
 }
@@ -81,84 +87,143 @@ h1 {
 .friend-group-card-bottom {
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
+.recording-instructions {
+    font-size: 0.95rem;
+    padding: 0 16px;
+}
+
+/* Cards */
+.alarm-card,
+.friend-group-card,
+.bg-icon-card {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 90%;
+    border-radius: 1rem;
+    background-color: rgba(2, 102, 0, 0.5);
+}
+
+.alarm-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    padding: 14px 16px 0;
+}
+
+.alarm-checkbox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.friends-list {
+    padding: 6px 16px 8px;
+}
+
+.friend-card {
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 0;
+}
+
+.friend-data {
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+}
+
 /* Nav */
 .nav {
     position: fixed;
     bottom: 0;
     width: 100%;
     height: 55px;
-    box-shadow: 0 0 3px rgba(0,0,0, 0.25);
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.25);
     background-color: #010101;
     overflow-x: auto;
     display: flex;
+    z-index: 50;
 }
-.nav-link, a {
+
+.nav-link {
     text-decoration: none;
     color: #fafafa;
-}
-.nav-link {
     display: flex;
-        flex-grow: 1;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     min-width: 50px;
     overflow: hidden;
     white-space: nowrap;
     -webkit-tap-highlight-color: transparent;
     transition: background-color 0.1s ease-in-out;
 }
+
 .nav-link:hover {
     background-color: #FCBA04;
+    color: #010101;
 }
-/* all this css for the button troll */
-/* 10 Pulse */
-.hk-tg-10 label {
-  background: #232733;
+
+.nav-text {
+    font-size: 0.7rem;
+    margin-top: 2px;
 }
-.hk-tg-10 label::after {
-  background: #fff;
+
+/* Toggle — hk-tg-10 Pulse */
+.hk-toggle {
+    position: relative;
+    display: inline-block;
 }
+
+.hk-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+    position: absolute;
+}
+
+.hk-toggle label {
+    display: block;
+    width: 58px;
+    height: 28px;
+    border-radius: 14px;
+    background: #232733;
+    cursor: pointer;
+    position: relative;
+    transition: background 0.3s;
+}
+
+.hk-toggle label::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #fff;
+    transition: transform 0.3s;
+}
+
 .hk-tg-10 input:checked + label {
-  background: #6a5cff;
+    background: #6a5cff;
 }
+
 .hk-tg-10 input:checked + label::after {
-  transform: translateX(38px);
-  animation: pulse 0.8s ease;
+    transform: translateX(30px);
+    animation: pulse 0.8s ease;
 }
 
 @keyframes pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(106, 92, 255, 0.7);
-  }
-  100% {
-    box-shadow: 0 0 0 14px rgba(106, 92, 255, 0);
-  }
+    0%   { box-shadow: 0 0 0 0 rgba(106, 92, 255, 0.7); }
+    100% { box-shadow: 0 0 0 14px rgba(106, 92, 255, 0); }
 }
-
-
-.alarm-card, .friend-group-card, .bg-icon-card {
-    display:flex;
-    justify-content: center;
-    flex-direction:column;
-    width: 90%;
-    border-radius: 1rem;
-    /* primary color but transparent */
-    background-color: rgba(2, 102, 0, .5);
-}
-
-.alarm-info {
-    display:flex;
-    justify-content: space-around;
-}
-.friend-card {
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-around;
-}
-.friend-data {
-    border-radius: 50%;
-    /* width: 50px; */
-}
-

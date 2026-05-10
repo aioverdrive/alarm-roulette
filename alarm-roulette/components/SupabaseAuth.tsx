@@ -55,7 +55,7 @@ export default function SupabaseAuth() {
     const { error } = await supabaseBrowser.auth.signInWithOAuth({
       provider: "google",
       options: {
-        redirectTo: `${window.location.origin}/alarms`,
+        redirectTo: `${window.location.origin}/alarm`,
       },
     });
 

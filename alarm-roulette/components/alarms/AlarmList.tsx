@@ -26,10 +26,31 @@ export function AlarmList({
   onToggleAlarm,
 }: AlarmListProps) {
   return (
-    <section className="alarm-section">
+    <section style={{ paddingBottom: '20px' }}>
+      <button
+        type="button"
+        onClick={onNewAlarm}
+        style={{
+          display: 'block',
+          margin: '20px auto 0',
+          background: 'rgba(2, 102, 0, 0.5)',
+          border: 'none',
+          color: '#fafafa',
+          borderRadius: '1rem',
+          padding: '12px 32px',
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 600,
+          fontSize: '1rem',
+          cursor: 'pointer',
+          width: '90%',
+        }}
+      >
+        +  Alarm
+      </button>
+
       {alarms.length === 0 ? (
-        <p className="alarm-section__empty">
-          No alarms yet. Tap below to schedule one.
+        <p style={{ textAlign: 'center', opacity: 0.6, marginTop: '20px' }}>
+          No alarms yet. Tap above to schedule one.
         </p>
       ) : (
         alarms.map(alarm => (
@@ -46,14 +67,6 @@ export function AlarmList({
           />
         ))
       )}
-
-      <button
-        type="button"
-        onClick={onNewAlarm}
-        className="btn-new-alarm margin-top"
-      >
-        + New Alarm
-      </button>
     </section>
   );
 }

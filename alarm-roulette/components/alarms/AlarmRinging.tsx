@@ -25,13 +25,49 @@ export function AlarmRinging({ visible, onStop }: AlarmRingingProps) {
       role="dialog"
       aria-modal="true"
       aria-labelledby="alarm-overlay-title"
-      className="alarm-ringing"
+      style={{
+        position: 'fixed',
+        inset: 0,
+        background: '#010101',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        zIndex: 200,
+        fontFamily: 'Poppins, sans-serif',
+        color: '#fafafa',
+      }}
     >
-      <div id="alarm-overlay-title" className="alarm-ringing__title">
+      <h1
+        id="alarm-overlay-title"
+        style={{
+          fontFamily: "'Las Vegas', sans-serif",
+          fontSize: '3rem',
+          color: '#FCBA04',
+          marginBottom: '8px',
+        }}
+      >
         Alarm Roulette
-      </div>
-      <p className="alarm-ringing__subtitle">Ringing</p>
-      <button ref={btnRef} type="button" onClick={onStop} className="btn-stop">
+      </h1>
+      <p style={{ fontSize: '1.2rem', opacity: 0.8, marginBottom: '48px' }}>
+        Ringing…
+      </p>
+      <button
+        ref={btnRef}
+        type="button"
+        onClick={onStop}
+        style={{
+          background: '#A50104',
+          border: 'none',
+          color: '#fafafa',
+          borderRadius: '1rem',
+          padding: '14px 48px',
+          fontFamily: 'Poppins, sans-serif',
+          fontWeight: 600,
+          fontSize: '1.1rem',
+          cursor: 'pointer',
+        }}
+      >
         Stop Alarm
       </button>
     </div>

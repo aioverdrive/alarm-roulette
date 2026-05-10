@@ -1,5 +1,5 @@
 import AlarmPageClient from './AlarmPageClient';
 
-export default function Page() {
+export default function AlarmPage() {
   return <AlarmPageClient />;
 }
